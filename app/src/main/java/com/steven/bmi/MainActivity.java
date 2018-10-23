@@ -16,12 +16,49 @@ public class MainActivity extends AppCompatActivity {
     EditText edHeight;
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("MainActivity","onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("MainActivity","onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("MainActivity","onDestroy");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("MainActivity","onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("MainActivity","onPause");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("MainActivity","onRestart");
+    }
+
+    @Override
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViews();
+        Log.d("MainActivity","onCreate");
     }
 
     private void findViews() {
@@ -33,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("MainActivity","onClick:help");
                 new AlertDialog.Builder(MainActivity.this)
-                        .setMessage("The BMI is an attempt to quantify the amount of tissue mass (muscle, fat, and bone) in an individual, and then categorize that person as underweight, normal weight, overweight, or obese based on that value.")
+                        .setMessage("The BMI is an attempt to quantify the amount of tissue mass (muscle, fat, and bone) in an individual," +
+                                " and then categorize that person as underweight, normal weight, overweight, or obese based on that value.")
                         .setPositiveButton("OK",null)
                         .show();
                 //用onClick設定按鈕的屬性
@@ -55,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         float bmi = weight / (height * height);
         Log.d("MainActivity" , bmi +"");
 
+        //bmi資料送到另一個視窗
         Intent intent = new Intent(this,ResultActivity.class);
         intent.putExtra("BMI",bmi);
         startActivity(intent);
