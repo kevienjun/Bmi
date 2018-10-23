@@ -1,6 +1,7 @@
 package com.steven.bmi;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,20 +54,24 @@ public class MainActivity extends AppCompatActivity {
         float height = Float.parseFloat(h);
         float bmi = weight / (height * height);
         Log.d("MainActivity" , bmi +"");
-        Toast.makeText(this,"Your Bmi is" + bmi,
-                Toast.LENGTH_LONG).show();
-                //下方出現資料
-        new AlertDialog.Builder(this)
-                .setMessage("Your Bmi is" + bmi)
-                .setTitle("Bmi")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        edWeight.setText("");
-                        //清除輸入的資料
-                    }
-                })
-                .show();
-                //彈出的視窗
+
+        Intent intent = new Intent(this,ResultActivity.class);
+        intent.putExtra("BMI",bmi);
+        startActivity(intent);
+////        Toast.makeText(this,"Your Bmi is" + bmi,
+//                Toast.LENGTH_LONG).show();
+//                //下方出現資料
+//        new AlertDialog.Builder(this)
+//                .setMessage("Your Bmi is" + bmi)
+//                .setTitle("Bmi")
+//                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        edWeight.setText("");
+//                        //清除輸入的資料
+//                    }
+//                })
+//                .show();
+//                //彈出的視窗
     }
 }
